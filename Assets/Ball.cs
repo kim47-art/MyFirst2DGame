@@ -9,6 +9,7 @@ public class Ball : MonoBehaviour
     public float speedX = 10;
     public float speedY = 10;
     public GameManager myManager;
+    public float ratioSusceptibility = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,20 @@ public class Ball : MonoBehaviour
         {
             Destroy(this.gameObject);
             myManager.GameOver();
+        }
+
+        //Playerの当たった位置に応じて進む方向を変える
+        if (collision.gameObject.tag == "Player")
+        {
+            foreach (ContactPoint2D point in collision.contacts)
+            {
+                //衝突したときのプレイヤーの位置
+                Vector3 pos = collision.gameObject.transform.position;
+                //Debug.Log(point.point.x - pos.x);
+                //衝突位置に応じて、力を加える
+                myRigidBody.velocity = new Vector2((point.point.x - pos.x) * ratioSusceptibility, myRigidBody.velocity.y);
+                Debug.Log(myRigidBody.velocity.y);
+            }
         }
     }
 }
