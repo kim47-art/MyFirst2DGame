@@ -8,9 +8,11 @@ public class GameManager : MonoBehaviour
     public Block[] blocks;
     public GameObject gameOverUI;
     public GameObject gameClearUI;
+    public UIScore gameScoreUI;
     public Ball ball;
 
     private bool isGameClear = false;
+    private int score = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +59,13 @@ public class GameManager : MonoBehaviour
     {
         //Sceneを再びよみこんで、
         SceneManager.LoadScene("Scenes/SampleScene");
+    }
+
+    public void AddScore(int add_score)
+    {
+        score += add_score;
+        gameScoreUI.SetScoreText(score);
+        Debug.Log(score);
     }
 
 }

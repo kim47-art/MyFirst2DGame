@@ -8,8 +8,8 @@ public class Ball : MonoBehaviour
 
     public float speedX = 10;
     public float speedY = 10;
-    public GameManager myManager;
     public float ratioSusceptibility = 10;
+    public GameManager myManager;
 
     // Start is called before the first frame update
     void Start()
